@@ -1,78 +1,100 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19939087&assignment_repo_type=AssignmentRepo)
-# Deployment and DevOps for MERN Applications
+# Discreet Women’s Safety App (Kenya-focused)
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+A modern, production-ready MERN stack app for discreet personal safety, featuring a decoy journal UI, hidden SOS, check-in timer, emergency contacts, and customizable preferences. Built for privacy, speed, and reliability.
 
-## Assignment Overview
+---
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+## Features
+- **Decoy Journal UI:** Realistic notes app with titles, entries, and deletion.
+- **Hidden Navigation:** Swipe gestures reveal SOS and Settings (PIN-gated).
+- **SOS Alert:** Sends custom message (with location) to emergency contacts.
+- **Check-In Timer:** Set a timer; auto-SOS if not checked in.
+- **Emergency Contacts:** Add, edit, delete trusted contacts.
+- **Preferences:** Custom SOS message, check-in default, GBV support, vibration.
+- **Onboarding Overlay:** Explains gestures on first launch.
+- **Dark/Light Mode:** Toggle from journal screen.
+- **Mobile-first, accessible, and responsive.**
 
-## Getting Started
+---
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+## Tech Stack
+- **Frontend:** React (Vite), CSS, react-swipeable, lottie-react
+- **Backend:** Express.js, MongoDB (Mongoose), dotenv
+- **DevOps:** GitHub Actions (CI/CD), Render/Netlify (deployment), UptimeRobot (monitoring)
 
-## Files Included
+---
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+## Local Setup
 
-## Requirements
+### Prerequisites
+- Node.js (v18+ recommended)
+- MongoDB Atlas account (or local MongoDB)
+- pnpm or npm
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd week-7-devops-deployment-assignment-Vinci-Plath
+```
 
-## Deployment Platforms
+### 2. Backend Setup
+```bash
+cd backend
+pnpm install # or npm install
+cp .env.example .env # edit with your MongoDB URI
+pnpm start # or npm start
+```
+- The backend runs on `http://localhost:5001` by default.
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+### 3. Frontend Setup
+```bash
+cd ../frontend
+pnpm install # or npm install
+pnpm dev # or npm run dev
+```
+- The frontend runs on `http://localhost:5173` by default.
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+---
 
-## CI/CD Pipeline
+## Environment Variables
+Create a `.env` file in `/backend`:
+```
+MONGODB_URI=your_mongodb_connection_string
+PORT=5001
+```
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+---
 
-## Submission
+## API Endpoints (Summary)
+- `POST /api/contacts` — Add contact
+- `GET /api/contacts` — List contacts
+- `DELETE /api/contacts/:id` — Delete contact
+- `POST /api/sos` — Trigger SOS alert
+- `POST /api/checkin/start` — Start check-in timer
+- `POST /api/checkin/cancel` — Cancel check-in
+- `GET /api/health` — Health check
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+---
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+## Deployment & CI/CD
+- **CI/CD:** GitHub Actions workflows for build, test, and deploy (see `.github/workflows/`)
+- **Backend:** Deploy to Render, Railway, or Heroku
+- **Frontend:** Deploy to Vercel, Netlify, or GitHub Pages
+- **Update frontend API URLs** to point to your deployed backend
 
-## Resources
+---
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+## Monitoring
+- **Health check:** `/api/health` endpoint
+- **Uptime monitoring:** Use UptimeRobot, BetterStack, etc.
+
+---
+
+## Credits
+- Built by Vinci-Plath for Week 7 DevOps/Deployment Assignment
+- Inspired by real-world safety needs and best practices
+
+---
+
+## License
+MIT (or as specified by your instructor) 
