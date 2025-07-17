@@ -30,11 +30,18 @@ jobs:
           cd frontend
           npm run build
 
+      - name: Move build files
+        run: |
+          cd frontend/dist
+          cp -r . ../../
+          cd ../../
+          rm -rf frontend
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist
+          publish_dir: ./
           publish_branch: gh-pages
           force_orphan: true
           clean: true
