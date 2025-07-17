@@ -18,6 +18,11 @@ A modern, production-ready MERN stack app for discreet personal safety, featurin
 ---
 
 ## Tech Stack
+
+## Deployment Status
+- Last deployment attempt: 2025-07-17
+- Status: Pending
+- Triggered by: Version bump
 - **Frontend:** React (Vite), CSS, react-swipeable, lottie-react
 - **Backend:** Express.js, MongoDB (Mongoose), dotenv
 - **DevOps:** GitHub Actions (CI/CD), Render/Netlify (deployment), UptimeRobot (monitoring)
