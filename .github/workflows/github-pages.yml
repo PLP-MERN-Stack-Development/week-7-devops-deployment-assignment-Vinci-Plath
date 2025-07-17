@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -32,17 +31,20 @@ jobs:
 
       - name: Move build files
         run: |
-          cd frontend/dist
-          cp -r . ../../
-          cd ../../
-          rm -rf frontend
+          rm -rf dist
+          mkdir -p dist
+          cp -r frontend/dist/* dist/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./dist
           publish_branch: gh-pages
           force_orphan: true
           clean: true
           domain: ${{ github.repository }}.github.io
+
+      - name: Clean up
+        run: |
+          rm -rf dist
